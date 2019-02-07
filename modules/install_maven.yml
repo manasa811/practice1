@@ -1,0 +1,16 @@
+---
+    - hosts: localhost
+      user: root
+
+      tasks:
+
+        - name: maven version
+          command: mvn -version
+          register: mvnversion
+
+        - debug: msg="{{mvnversion.stdout_lines}}"
+
+        - name: installing maven
+          yum: pkg=apache-maven state=installed
+          register: result1
+        - debug: msg="{{result}}"

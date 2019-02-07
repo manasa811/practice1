@@ -1,0 +1,21 @@
+--- # Create a directory
+    - hosts: localhost
+      user: root
+      gather_facts: no
+
+      tasks:
+      - name : Check directory exists in the given path
+        stat: path="/home/deploy/testdir"
+        register: direxists
+
+      - debug: msg="{{direxists.stat.exists}}"
+
+      - name : Create a directory in not exist
+        file: path="/home/deploy/testdir" state=directory
+        register: dir1
+        when: not direxists.stat.exists
+
+      - debug: msg="{{dir1.changed}}"
+
+      - debug: msg=" Directory createed successfully"
+        when: dir1.changed == true

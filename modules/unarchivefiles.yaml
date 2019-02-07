@@ -1,0 +1,8 @@
+--- # unarchive files
+   - hosts: localhost
+
+     tasks:
+     - name: copy the archive file from tmp directory
+       unarchive:    # unarchive module 
+         src: /tmp/filename.tar.gz
+         dest: /tmp

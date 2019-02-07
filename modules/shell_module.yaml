@@ -1,0 +1,23 @@
+---
+# shell module
+- hosts: localhost
+  user: root
+  gather_facts: no
+
+  tasks:
+    - name: find the space
+      shell: df -h
+      register: spaceusage
+    - debug: msg='{{spaceusage.stdout}}'
+
+    - name: check free -g
+      shell: free -g
+      register: freeg
+    - debug: msg=" TEST MEssage"
+    - debug: msg='{{freeg.stdout}}'
+
+    - name: lscpu
+      shell: lscpu
+      register: lscpuoutput
+
+    - debug: msg='{{lscpuoutput.stdout_lines[3]}}'

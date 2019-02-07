@@ -1,0 +1,18 @@
+--- # file creation
+   - hosts: localhost
+     user: root
+     gather_facts: no
+
+
+     tasks:
+
+     - name: Check the file exist in the directory
+       stat: path="/home/deploy/checkfile.txt"
+       register: result
+
+     - debug: msg="{{result.stat.exists}}"
+
+     - name : Create a file if not exist
+       file :
+        path: "/home/deploy/checkfile2.txt"
+        state: touch

@@ -1,0 +1,21 @@
+--- # find last two days files
+   - hosts: localhost
+     user: root
+     gather_facts: no
+
+     tasks:
+     - name: find last two days files
+       find:
+        paths: /home/deploy/practice
+        patterns: "*.txt"
+        age: 2d
+        recurse: yes
+       register: files_matched
+
+     - name: display files
+       debug: msg='{{files_matched}}'
+
+     - name: deleted text files using file module 
+       file:
+        path: /home/deploy/practice/2.txt
+        state: absent

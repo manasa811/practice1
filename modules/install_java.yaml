@@ -1,0 +1,18 @@
+---
+  - hosts: appservers::dbservers
+    user: root
+    serial: 1
+
+    tasks:
+     - name: instaling java for compilation
+       yum: name=java state=installed
+
+     - name: varify java version
+       command: java -version
+       register: result
+       when: inventory_hostname in groups['appservers']
+
+     - name: java version is
+       debug: msg="{{result.stderr_lines}}"
+       when: inventory_hostname in groups['appservers']
+

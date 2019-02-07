@@ -1,0 +1,10 @@
+---
+# install ntp
+- hosts: localhost
+  gather_facts: no
+  tasks:
+  - name: installing ntp
+    yum: pkg="ntp" state="latest"
+
+  - name: starting ntp server
+    service: name="ntpd" state="restarted"

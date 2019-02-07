@@ -1,0 +1,17 @@
+--- # this playbook fetch value of a variable from a file
+   - hosts: localhost
+     user: root
+
+     gather_facts: no
+     vars_files:
+      - filename.txt
+     vars:
+      - varname: touchtest
+
+     tasks:
+      - name: get the value of a variable from a file
+        debug: msg="{{var1}}"
+
+      - name: display the variable value
+        debug: msg="{{varname}}"
+

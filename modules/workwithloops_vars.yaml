@@ -1,0 +1,17 @@
+--- # working with loops with variables
+   - hosts: localhost
+     user: root
+     gather_facts: false
+     vars_prompt:
+         - name: testpkg
+           prompt: Enter package name
+           prompt: no
+           #prompt: no
+
+     tasks:
+      - name: installing multiple packages
+        yum: pkg={{item}} state=installed
+        with_items:
+             - '{{testpkg}}'
+
+        ignore_erros: yes

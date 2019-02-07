@@ -1,0 +1,12 @@
+--- # execute shell sript
+   - hosts: localhost
+     user: root
+     gather_facts: no
+
+
+     tasks:
+      - name: executing shell script
+        #command: path=/home/deploy/testscript.sh
+        script: /home/deploy/testscript.sh
+      #  register: output
+      #- debug: msg="{{output}}"
